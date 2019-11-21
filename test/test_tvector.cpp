@@ -31,12 +31,18 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one) // Скопированный вектор равен первому
 {
-  ADD_FAILURE();
+	TVector<int> v1(10, 2);
+	TVector<int> v2(v1);
+	EXPECT_EQ(v1, v2);
+
 }
 
 TEST(TVector, copied_vector_has_its_own_memory) // Скопированный вектор имеет собственную память
 {
-  ADD_FAILURE();
+	TVector<int> v1(10, 2);
+	TVector<int> v2(v1);
+	EXPECT_NE(&v1, &v2);
+
 }
 
 TEST(TVector, can_get_size) // Возможность получить вектор 
@@ -73,17 +79,23 @@ TEST(TVector, throws_when_set_element_with_too_large_index) // Ошибка при устано
 
 TEST(TVector, can_assign_vector_to_itself) 
 {
-  ADD_FAILURE();
+	TVector<int> v(5);
+	ASSERT_NO_THROW(v == v);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size) // Можно назначить векторы одинакового размера 
 {
-  ADD_FAILURE();
+	TVector<int> v1(4), v2(4);
+	v1[2] = 4;
+	v1 = v2;
+	EXPECT_EQ(v1, v2);
 }
 
 TEST(TVector, assign_operator_change_vector_size) // Назначить оператор изменения размера вектора
 {
-  ADD_FAILURE();
+	TVector<int> v1(4), v2(5);
+	v1 = v2;
+	EXPECT_EQ(v1.GetSize(), 5);
 }
 
 TEST(TVector, can_assign_vectors_of_different_size) // Можно назначить векторы разного размера
